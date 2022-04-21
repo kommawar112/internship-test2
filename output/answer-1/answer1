@@ -1,0 +1,11 @@
+import pandas as pd
+vegetables = pd.read_csv("main.csv")
+vegetables.tail()
+vegetables.head()
+vegetables[2:]
+vegetables.groupby('product_description')['price'].mean()
+vegetables.groupby('product_description')['price'].sum()
+vegetables["price_new"] = vegetables['price'].fillna(
+   vegetables.groupby('product_description')['price'].transform("mean")
+)
+vegetables[vegetables["price"].isna()].head()
